@@ -129,7 +129,7 @@ CREATE TABLE public.moon (
     has_life boolean NOT NULL,
     is_spherical boolean NOT NULL,
     description text,
-    distance_from_earth numeric,
+    distance_from_earth integer,
     age_in_millions_of_years numeric,
     planet_id integer
 );
@@ -345,8 +345,8 @@ INSERT INTO public.galaxy_types VALUES (4, 'Quasars', 'These are compact areas i
 --
 
 INSERT INTO public.moon VALUES (1, 'Earth''s moon', false, true, 'This in the principal moon of the planet earth', 384000, 5, 1);
-INSERT INTO public.moon VALUES (2, 'Phobos', false, true, 'This is the largest of Mars two moons', 770000.79, 2000.7, 7);
-INSERT INTO public.moon VALUES (3, 'Deimos', false, true, 'This is the smallest  of Mars two moons', 770000.79, 2000.7, 7);
+INSERT INTO public.moon VALUES (2, 'Phobos', false, true, 'This is the largest of Mars two moons', 770001, 2000.7, 7);
+INSERT INTO public.moon VALUES (3, 'Deimos', false, true, 'This is the smallest  of Mars two moons', 770001, 2000.7, 7);
 INSERT INTO public.moon VALUES (4, 'Charon', false, true, 'Charon is the largest of the five moon Pluto has', 150000000, 0, 9);
 INSERT INTO public.moon VALUES (5, 'Hydra', false, true, 'Hydra is one of the two outer moons of Pluto', 65000, 0, 9);
 INSERT INTO public.moon VALUES (6, 'Kerberos', false, true, 'Kerberos is a moon of pluto with a strange shape', 396100, 0, 9);
@@ -519,6 +519,54 @@ ALTER TABLE ONLY public.planet_types
 
 ALTER TABLE ONLY public.planet_types
     ADD CONSTRAINT planet_types_planet_type_id_key UNIQUE (planet_types_id);
+
+
+--
+-- Name: galaxy rgalaxy; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT rgalaxy UNIQUE (galaxy_id, name);
+
+
+--
+-- Name: galaxy_types rgalaxy_types; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy_types
+    ADD CONSTRAINT rgalaxy_types UNIQUE (galaxy_types_id, name);
+
+
+--
+-- Name: moon rmoon; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT rmoon UNIQUE (moon_id, name);
+
+
+--
+-- Name: planet rplanet; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT rplanet UNIQUE (planet_id, name);
+
+
+--
+-- Name: planet_types rplanettypes; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet_types
+    ADD CONSTRAINT rplanettypes UNIQUE (planet_types_id, name);
+
+
+--
+-- Name: star rstar; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT rstar UNIQUE (star_id, name);
 
 
 --
